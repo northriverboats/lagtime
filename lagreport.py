@@ -147,7 +147,6 @@ INNER JOIN timeWorkingPunch twp ON job.job_id = twp.job_id
     boat = { "job": "", "fabStart": "", "fabEnd": "", "canvasStart": "", "canvasEnd": "", \
              "paintStart": "", "paintEnd": "", "outfitStart": "", "outfitEnd": "" }
 
-    print(os.getenv('DB_HOST'),os.getenv('DB_USER'),os.getenv('DB_PASSWORD'),os.getenv('DB_DATABASE'))
     conn = pymssql.connect(os.getenv('DB_HOST'),os.getenv('DB_USER'),os.getenv('DB_PASSWORD'),os.getenv('DB_DATABASE'))
     cursor = conn.cursor()
     cursor.execute(SQL)
