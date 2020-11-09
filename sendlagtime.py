@@ -2,10 +2,17 @@
 
 from lagreport import *
 from emailer import *
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 
-# load_dotenv()
+# set python environment
+if getattr(sys, 'frozen', False):
+    bundle_dir = sys._MEIPASS
+else:
+    # we are running in a normal Python environment
+    bundle_dir = os.path.dirname(os.path.abspath(__file__))
 
+# load environmental variables
+load_dotenv(bundle_dir + "/.env")
 
 
 def processAndEmail():

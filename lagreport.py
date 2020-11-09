@@ -12,7 +12,15 @@ from openpyxl.formatting.rule import ColorScaleRule, CellIsRule, FormulaRule
 from collections import OrderedDict
 from dotenv import load_dotenv
 
-load_dotenv()
+# set python environment
+if getattr(sys, 'frozen', False):
+	bundle_dir = sys._MEIPASS
+else:
+	# we are running in a normal Python environment
+	bundle_dir = os.path.dirname(os.path.abspath(__file__))
+
+# load environmental variables
+load_dotenv(bundle_dir + "/.env")
 
 # Holidays Off  from https://www.timeanddate.com/holidays/us/2021
 holidays = [(lambda x:  datetime.datetime.strptime(x ,"%Y-%m-%d").date()  ) (x) for x in [

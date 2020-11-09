@@ -34,7 +34,7 @@ class Email:
         self._reEmail = re.compile("^([\\w \\._]+\\<[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\>|[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)$")
         self.clearRecipients()
         self.clearAttachments()
-    
+
     def send(self):
         """
         Send the email message represented by this object.
@@ -44,7 +44,7 @@ class Email:
             raise Exception("Error! Must specify at least one body type (HTML or Text)")
         if len(self._to) == 0:
             raise Exception("Must specify at least one recipient")
-        
+
         # Create the message part
         if self._textBody is not None and self._htmlBody is None:
             msg = MIMEText(self._textBody, "plain")
@@ -110,13 +110,13 @@ class Email:
         # server.set_debuglevel(True)
         server.sendmail(self._from, self._to + self._cc + self._bcc, msg)
         server.quit()
-    
+
     def setSubject(self, subject):
         """
         Set the subject of the email message.
         """
         self._subject = subject
-    
+
     def setFrom(self, address):
         """
         Set the email sender.
@@ -124,7 +124,7 @@ class Email:
         if not self.validateEmailAddress(address):
             raise Exception("Invalid email address '%s'" % address)
         self._from = address
-    
+
     def clearRecipients(self):
         """
         Remove all currently defined recipients for
@@ -133,7 +133,7 @@ class Email:
         self._to = []
         self._cc = []
         self._bcc = []
-    
+
     def addRecipient(self, address):
         """
         Add a new recipient to the email message.
@@ -163,19 +163,19 @@ class Email:
         Set the plain text body of the email message.
         """
         self._textBody = body
-    
+
     def setHtmlBody(self, body):
         """
         Set the HTML portion of the email message.
         """
         self._htmlBody = body
-    
+
     def clearAttachments(self):
         """
         Remove all file attachments.
         """
         self._attach = []
-    
+
     def addAttachment(self, fname, attachname=None):
         """
         Add a file attachment to this email message.
@@ -192,18 +192,18 @@ class Email:
         if fname is None:
             return
         self._attach.append( (fname, attachname) )
-    
+
     def validateEmailAddress(self, address):
         """
         Validate the specified email address.
-        
+
         @return: True if valid, False otherwise
         @rtype: Boolean
         """
         if self._reEmail.search(address) is None:
             return False
         return True
-    
+
 if __name__ == "__main__":
     print ("Tests go here...")
 
@@ -215,7 +215,7 @@ if __name__ == "__main__":
     m.addRecipient(mTo)
     m.addCC("fredw@northriverboats.com")
     # m.addBCC("w.brokenbourgh@pismotek.com")
-   
+
     m.setSubject("Text and HTML Message with CC and BCC")
     m.setTextBody("You should not see this text in a MIME aware reader")
     m.setHtmlBody("The following should be <b>bold</b>. If this works Will, you will be BCC'd on this.")
