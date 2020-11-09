@@ -9,8 +9,10 @@ from emailer import *
 
 
 def processAndEmail():
+    """
     if (datetime.date.today().isocalendar()[1] % 2 == 0 ):
        return
+   """
 
     lagReport()
 
@@ -50,14 +52,16 @@ Email: fredw@northriverboats.com"""%(datetime.date.today())
             print(email)
 
         mCc = os.getenv('MAIL_CC')
-        for email in mCc.split(','):
-            m.addCC(email)
-            print(email)
+        if mCc:
+            for email in mCc.split(','''):
+                m.addCC(email)
+                print(email)
 
         mBcc = os.getenv('MAIL_BCC')
-        for email in mBcc.split(','):
-            m.addBCC(email)
-            print(email)
+        if mBcc:
+            for email in mBcc.split(','):
+                m.addBCC(email)
+                print(email)
 
     m.setSubject('Lag Time Report %s'%(datetime.date.today()))
     m.setTextBody(plainText)
