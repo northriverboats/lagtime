@@ -141,14 +141,19 @@ def lagReport():
            ELSE '' END AS dept
       FROM job
 INNER JOIN timeWorkingPunch twp ON job.job_id = twp.job_id
-     WHERE (   JobName LIKE '% 717' OR  JobName LIKE '% 718'
-            OR JobName LIKE '% 818' OR  JobName LIKE '% 819'
+     WHERE (
             OR JobName LIKE '% 919' OR  JobName LIKE '% 920'
             OR JobName LIKE '% 020' OR  JobName LIKE '% 021'
             OR JobName LIKE '% 121' OR  JobName LIKE '% 122'
             OR JobName LIKE '% 222' OR  JobName LIKE '% 223'
             OR JobName LIKE '% 323' OR  JobName LIKE '% 324'
-            OR JobName LIKE '% 424' OR  JobName LIKE '% 425' )
+            OR JobName LIKE '% 424' OR  JobName LIKE '% 425'
+            OR JobName LIKE '% 525' OR  JobName LIKE '% 526'
+            OR JobName LIKE '% 626' OR  JobName LIKE '% 627'
+            OR JobName LIKE '% 727' OR  JobName LIKE '% 728'
+            OR JobName LIKE '% 828' OR  JobName LIKE '% 829'
+            OR JobName LIKE '% 929' OR  JobName LIKE '% 930'
+           )
         AND start_ts > '""" + startDate.strftime("%Y-%m-%d") + """ 23:00:00'
         ORDER BY job.jobname, twp.workingpunch_ts;"""
 
