@@ -1,13 +1,6 @@
-altgraph==0.17
-et-xmlfile==1.0.1
-jdcal==1.4
-openpyxl==2.5.9
-pkg-resources==0.0.0
-pudb==2019.2
-Pygments==2.7.2
-pyinstaller==4.0
-pyinstaller-hooks-contrib==2020.10
-pymssql==2.1.4
-python-dotenv==0.10.1
-urwid==2.1.2
-workdays==1.4
+emailer @ git+https://github.com/northriverboats/emailer.git
+openpyxl
+pyinstaller
+pymssql
+python-dotenv
+workdays
