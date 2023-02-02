@@ -23,8 +23,7 @@ def processAndEmail():
 
     lagReport()
 
-    htmlText = """Hi Patrick,
-<p>Here is the Lag Time Report for %s.</p>
+    htmlText = """<p>Here is the Lag Time Report for %s.</p>
 <font color="#888888"><br>
 <br>
 -- <br>
@@ -36,9 +35,7 @@ Email: <a href="mailto:fredw@northriverboats.com" target="_blank"><span class="i
 <br>
 </font>"""%(datetime.date.today())
 
-    plainText = """Hi Dennis,
-
-Here is the Lag Time Report for %s.
+    plainText = """Here is the Lag Time Report for %s.
 
 --
 North River Boats "For Waters Less Traveled"
@@ -46,38 +43,11 @@ Fred Warren - Computer Support Specialist
 Phone: 541-673-2438x140 Fax: 541-67902818
 Email: fredw@northriverboats.com"""%(datetime.date.today())
 
-    m = Email(os.getenv('MAIL_SERVER'))
-    m.setFrom(os.getenv('MAIL_FROM'))
-
-    if os.getenv('DEBUG').upper() == 'TRUE':
-        m.addRecipient(os.getenv('MAIL_FROM'))
-        print(os.getenv('MAIL_FROM'))
-    else:
-        mTo = os.getenv('MAIL_TO')
-        for email in mTo.split(','):
-            m.addRecipient(email)
-            print(email)
-
-        mCc = os.getenv('MAIL_CC')
-        if mCc:
-            for email in mCc.split(','''):
-                m.addCC(email)
-                print(email)
-
-        mBcc = os.getenv('MAIL_BCC')
-        if mBcc:
-            for email in mBcc.split(','):
-                m.addBCC(email)
-                print(email)
-
-    m.setSubject('Lag Time Report %s'%(datetime.date.today()))
-    m.setTextBody(plainText)
-    m.setHtmlBody(htmlText)
-    m.addAttachment('/tmp/LagReport-%s.xlsx'%(datetime.date.today()))
-    m.send()
-
-
+    mail_results(
+        'Lag Time Report %s'%(datetime.date.today()),
+        htmlText,
+        text=plainText,
+        attachment='/tmp/LagReport-%s.xlsx'%(datetime.date.today()))
 
 if __name__ == "__main__":
     processAndEmail()
-

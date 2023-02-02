@@ -142,7 +142,7 @@ def lagReport():
       FROM job
 INNER JOIN timeWorkingPunch twp ON job.job_id = twp.job_id
      WHERE (
-            OR JobName LIKE '% 919' OR  JobName LIKE '% 920'
+               JobName LIKE '% 919' OR  JobName LIKE '% 920'
             OR JobName LIKE '% 020' OR  JobName LIKE '% 021'
             OR JobName LIKE '% 121' OR  JobName LIKE '% 122'
             OR JobName LIKE '% 222' OR  JobName LIKE '% 223'
