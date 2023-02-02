@@ -4,15 +4,15 @@ from lagreport import *
 from emailer import *
 from dotenv import load_dotenv
 
-# set python environment
-if getattr(sys, 'frozen', False):
-    bundle_dir = sys._MEIPASS
-else:
-    # we are running in a normal Python environment
-    bundle_dir = os.path.dirname(os.path.abspath(__file__))
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
 
-# load environmental variables
-load_dotenv(bundle_dir + "/.env")
+    try:
+        base_path = sys._MEIPASS  # pylint: disable=protected-access
+    except AttributeError:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 
 def processAndEmail():
@@ -50,4 +50,5 @@ Email: fredw@northriverboats.com"""%(datetime.date.today())
         attachment='/tmp/LagReport-%s.xlsx'%(datetime.date.today()))
 
 if __name__ == "__main__":
+    load_dotenv(dotenv_path=resource_path(".env"))
     processAndEmail()
