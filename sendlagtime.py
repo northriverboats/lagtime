@@ -57,7 +57,7 @@ def mail_results(subject, body, attachment=''):
         for bcc in bccs:
             envelope.add_bcc_addr(bcc)
 
-    if attachent:
+    if attachment:
         envelope.add_attachment(attachment)
 
     # send the envelope using an ad-hoc connection...
@@ -104,7 +104,6 @@ Email: fredw@northriverboats.com"""%(datetime.date.today())
     mail_results(
         'Lag Time Report %s'%(datetime.date.today()),
         htmlText,
-        text=plainText,
         attachment='/tmp/LagReport-%s.xlsx'%(datetime.date.today()))
 
 if __name__ == "__main__":
