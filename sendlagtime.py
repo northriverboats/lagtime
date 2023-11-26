@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+import click
+import os
+import sys
 from lagreport import *
 from dotenv import load_dotenv
 from envelopes import Envelope
@@ -106,6 +109,12 @@ Email: fredw@northriverboats.com"""%(datetime.date.today())
         htmlText,
         attachment='/tmp/LagReport-%s.xlsx'%(datetime.date.today()))
 
-if __name__ == "__main__":
+
+@click.command()
+def main():
     load_dotenv(dotenv_path=resource_path(".env"))
     processAndEmail()
+    sys.exit(0)
+
+if __name__ == "__main__":
+    main()

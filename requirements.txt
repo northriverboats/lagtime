@@ -1,6 +1,7 @@
-Envelopes==0.4
+Click
+Envelopes
 openpyxl
 pyinstaller
-pymssql==2.2.7
+pymssql
 python-dotenv
 workdays
