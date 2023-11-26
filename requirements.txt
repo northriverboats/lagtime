@@ -1,6 +1,6 @@
-emailer @ git+https://github.com/northriverboats/emailer.git
+Envelopes==0.4
 openpyxl
 pyinstaller
-pymssql=2.1.5
+pymssql==2.2.7
 python-dotenv
 workdays
